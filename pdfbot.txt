@@ -1,0 +1,1 @@
+Act as a text summarizer, extracting the most important ideas from a long document
