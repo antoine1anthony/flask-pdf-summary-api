@@ -25,7 +25,6 @@ def save_file(filepath, content):
         return False  # Return False if an error occurs
     return True  # Return True if the file was saved successfully
 
-
 def convert_pdf2txt(src_dir, dest_dir):
     files = os.listdir(src_dir)
     files = [i for i in files if '.pdf' in i]
@@ -40,8 +39,6 @@ def convert_pdf2txt(src_dir, dest_dir):
                 save_file(dest_dir+file.replace('.pdf','.txt'), output.strip())
         except Exception as oops:
             print("An error occurred:", oops, file)
-
-openai.api_key = open_file('openaiapikey.txt')
 
 def gpt_3(prompt):
     chatbot = open_file('pdfbot.txt')
