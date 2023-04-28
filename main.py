@@ -1,3 +1,5 @@
+# main.py pdf summary endpoint
+
 from flask import Flask, request, jsonify
 import os
 import json
@@ -7,12 +9,22 @@ import glob2
 import textwrap
 
 def open_file(filepath):
-    with open(filepath, 'r', encoding='utf-8') as infile:
-        return infile.read()
+    try:
+        with open(filepath, 'r', encoding='utf-8') as infile:
+            return infile.read()
+    except Exception as e:
+        print(f"An error occurred while opening the file '{filepath}': {str(e)}")
+        return None  # Return None if an error occurs
 
 def save_file(filepath, content):
-    with open(filepath, 'w', encoding='utf-8') as outfile:
-        outfile.write(content)
+    try:
+        with open(filepath, 'w', encoding='utf-8') as outfile:
+            outfile.write(content)
+    except Exception as e:
+        print(f"An error occurred while saving the file '{filepath}': {str(e)}")
+        return False  # Return False if an error occurs
+    return True  # Return True if the file was saved successfully
+
 
 def convert_pdf2txt(src_dir, dest_dir):
     files = os.listdir(src_dir)
@@ -24,6 +36,7 @@ def convert_pdf2txt(src_dir, dest_dir):
                 for page in pdf.pages:
                     output += page.extract_text()
                     output += '\n\nNEW PAGE\n\n'
+                    print('Destination directory File Path:', dest_dir+file.replace('.pdf','.txt'))
                 save_file(dest_dir+file.replace('.pdf','.txt'), output.strip())
         except Exception as oops:
             print("An error occurred:", oops, file)
@@ -48,19 +61,6 @@ def gpt_3(prompt):
     text = response['choices'][0]['message']['content']
     return text
 
-def gpt_31(prompt):
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=prompt,
-        temperature=0,
-        max_tokens=700,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0,
-    )
-    text = response['choices'][0]['text'].strip()
-    return text
-
 # Create a Flask application instance
 app = Flask(__name__)
 
@@ -71,8 +71,11 @@ def pdfsummary():
         # Load the OpenAI API key
         openai.api_key = open_file('openaiapikey.txt')
 
-        # Get the PDF files from the request
+        print('Request received', request)
+
+        # Get the PDF files from the request (use the key 'pdfs')
         pdf_files = request.files.getlist('pdfs')
+        print("PDF files:", pdf_files)
 
         # Save the PDF files to a directory
         pdf_dir = 'PDFs/'
@@ -81,11 +84,12 @@ def pdfsummary():
                 f.write(pdf_file.read())
 
         # Convert PDFs to text
-        convert_pdf2txt('PDFs/', 'textPDF/')
+        convert_pdf2txt('PDFs/', 'textPDFs/')
 
         # Get a list of all text files in the specified folder
-        pathfolder = 'textPDF/'
+        pathfolder = 'textPDFs/'
         files = glob2.glob(pathfolder + '*.txt')
+        print("Text files:", files)
 
         # Initialize an empty string to store the contents of all the text files
         alltext = ""
@@ -104,13 +108,8 @@ def pdfsummary():
         # Before calling the GPT-3 model for summarization
         result = []
         for chunk in chunks:
-            prompt = open_file
-            ('pdfprompt.txt').replace('<<SUMMARY>>', chunk)
+            prompt = open_file('pdfprompt.txt').replace('<<SUMMARY>>', chunk)
             prompt = prompt.encode(encoding='ASCII', errors='ignore').decode()
-
-            # Print the content of the chunk and the prompt
-            print("Chunk content:", chunk)
-            print("Prompt content:", prompt)
             
             summary = gpt_3(prompt)
             result.append(summary)
@@ -120,10 +119,8 @@ def pdfsummary():
 
         summary_content = '\n\n'.join(result)
 
-        # Split the contents of pdfsummary.txt into chunks with a textwrap of 3000
-        with open("pdfsummary.txt", 'r', encoding='utf-8') as infile:
-            summary = infile.read()
-            chunks = textwrap.wrap(summary, 3000)
+        
+        chunks = textwrap.wrap(summary_content, 3000)
 
         # Write notes from chunks
         result = []  # Store notes
@@ -147,7 +144,7 @@ def pdfsummary():
         essencial1 = open_file('pdfprompt4.txt').replace('<<NOTES>>', summary_string)
         essencial2 = gpt_3(essencial1)
 
-        blogpost = open_file('essencial.txt')
+        blogpost = essencial2
         blogpostw = open_file('pdfprompt5.txt').replace('<<NOTES>>', blogpost)
         blogpostw2 = gpt_3(blogpostw)
 
