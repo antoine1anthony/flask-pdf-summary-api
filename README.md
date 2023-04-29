@@ -33,7 +33,7 @@ Installation
 
     bashCopy code
 
-    `git clone https://github.com/your-repo-url/pdf-summary-generator.git
+    `git clone https://github.com/antoine1anthony/flask-pdf-summary-api.git
     cd pdf-summary-generator`
 
 2.  Install the required Python libraries:
