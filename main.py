@@ -93,7 +93,7 @@ def pdfsummary():
 
         # After converting PDFs to text and reading the text files
         for file in files:
-            with open(file, 'r') as infile:
+            with open(file, 'r', encoding='utf-8') as infile:
                 alltext += infile.read()
 
         # Print the content of alltext to check if it contains the expected text
