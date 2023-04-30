@@ -1,12 +1,12 @@
-## PDF Summary Generator with Python Script
+# PDF Summary Generator with Python Script
 
-# Overview
+## Overview
 
 The PDF Summary Generator is a Python-based application that leverages the capabilities of OpenAI's GPT-3 language model to automatically generate summaries, notes, and other content from PDF documents. The application provides a RESTful API endpoint that accepts PDF files as input and returns a JSON object containing the generated summaries, notes, and additional content.
 
 The application uses the pdfplumber library to extract text from PDF files, and the openai library to interact with the GPT-3 API. The application is built using the Flask web framework, making it easy to deploy and use.
 
-# Features
+## Features
 
 Extract text from PDF files and convert them to plain text format.
 
@@ -18,7 +18,7 @@ Generate additional content such as essential information and blog posts.
 
 Provide a RESTful API endpoint for easy integration with other applications.
 
-# Prerequisites
+## Prerequisites
 
 To use the PDF Summary Generator, you need the following:
 
@@ -28,7 +28,7 @@ An OpenAI API key (you can obtain one by signing up for an account on the OpenAI
 
 The following Python libraries: flask, pdfplumber, openai, glob2, and textwrap
 
-# Installation
+## Installation
 
 Clone the repository:
 
@@ -44,7 +44,7 @@ Create a file named openaiapikey.txt in the project directory and paste your Ope
 
 (Optional) Customize the GPT-3 prompts and chatbot responses by modifying the text files in the project directory.
 
-# Usage
+## Usage
 
 To run the PDF Summary Generator application, execute the following command in the project directory:
 
@@ -56,17 +56,13 @@ To use the API endpoint, send a POST request to http://localhost:8000/pdfsummary
 
 You can use tools like Postman or curl to send requests to the API endpoint.
 
-# Example Request
+Example Request
 
-```bash
+`curl -X POST -F "pdfs=@example.pdf" http://localhost:8000/pdfsummary`
 
-curl -X POST -F "pdfs=@example.pdf" http://localhost:8000/pdfsummary```
+Example Response
 
-# Example Response
-
-```json
-
-{
+`{
 
   "summary": "This is the summary of the PDF document...",
 
@@ -78,16 +74,16 @@ curl -X POST -F "pdfs=@example.pdf" http://localhost:8000/pdfsummary```
 
   "blog_post": "This is the generated blog post based on the content..."
 
-}```
+}`
 
-# Contributing
+## Contributing
 
 Contributions to the PDF Summary Generator are welcome! If you would like to contribute, please fork the repository, make your changes, and submit a pull request. If you find any issues or have suggestions for improvements, please open an issue on the GitHub repository.
 
-# License
+## License
 
 The PDF Summary Generator is released under the MIT License. See the LICENSE file for more details.
 
-# Disclaimer
+## Disclaimer
 
 This application uses the GPT-3 language model provided by OpenAI. The quality of the generated content may vary, and users are advised to review the output before using it for any critical purposes. The application is provided "as is" without any warranties or guarantees. Users are responsible for any consequences resulting from the use of this application and its generated content.
