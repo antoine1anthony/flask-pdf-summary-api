@@ -141,7 +141,7 @@ def pdfsummary():
         essencial1 = open_file('pdfprompt4.txt').replace('<<NOTES>>', summary_string)
         essencial2 = gpt_3(essencial1)
 
-        blogpost = essencial2
+        blogpost = notes_string
         blogpostw = open_file('pdfprompt5.txt').replace('<<NOTES>>', blogpost)
         blogpostw2 = gpt_3(blogpostw)
 
@@ -153,6 +153,21 @@ def pdfsummary():
             'blog_post': blogpostw2,
             # 'visual_prompt': desc
         }
+
+         # Delete the uploaded PDF files and the converted .txt files
+        for pdf_file in pdf_files:
+            pdf_path = os.path.join(pdf_dir, pdf_file.filename)
+            txt_path = os.path.join(pathfolder, pdf_file.filename.replace('.pdf', '.txt'))
+            try:
+                if os.path.exists(pdf_path):
+                    os.remove(pdf_path)
+                    print(f"Deleted PDF file: {pdf_path}")
+                if os.path.exists(txt_path):
+                    os.remove(txt_path)
+                    print(f"Deleted TXT file: {txt_path}")
+            except Exception as e:
+                print(f"An error occurred while deleting files: {str(e)}")
+
         return jsonify(result), 200
     except Exception as e:
         print("An error occurred:", str(e))
