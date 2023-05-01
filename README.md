@@ -81,9 +81,7 @@ Example Response
 
   "notes_summary": "This is the summary of the notes...",
 
-  "essential_info": "This is the essential information extracted...",
-
-  "blog_post": "This is the generated blog post based on the content..."
+  "essential_info": "This is the essential information extracted..."
 
 }
 ```

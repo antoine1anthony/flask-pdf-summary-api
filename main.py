@@ -141,17 +141,11 @@ def pdfsummary():
         essencial1 = open_file('pdfprompt4.txt').replace('<<NOTES>>', summary_string)
         essencial2 = gpt_3(essencial1)
 
-        blogpost = notes_string
-        blogpostw = open_file('pdfprompt5.txt').replace('<<NOTES>>', blogpost)
-        blogpostw2 = gpt_3(blogpostw)
-
         result = {
             'summary': summary_content,
             'notes': notes_string,
             'notes_summary': summary_string,
-            'essencial_info': essencial2,
-            'blog_post': blogpostw2,
-            # 'visual_prompt': desc
+            'essencial_info': essencial2
         }
 
          # Delete the uploaded PDF files and the converted .txt files
