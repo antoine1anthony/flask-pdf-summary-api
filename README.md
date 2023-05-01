@@ -32,13 +32,19 @@ The following Python libraries: flask, pdfplumber, openai, glob2, and textwrap
 
 Clone the repository:
 
-`git clone https://github.com/antoine1anthony/flask-pdf-summary-api.git
+```
+git clone https://github.com/antoine1anthony/flask-pdf-summary-api.git
+```
 
-cd flask-pdf-summary-api`
+```
+cd flask-pdf-summary-api
+```
 
 Install the required Python libraries:
 
-`pip install -r requirements.txt`
+```
+pip install -r requirements.txt
+```
 
 Create a file named openaiapikey.txt in the project directory and paste your OpenAI API key into it.
 
@@ -48,7 +54,9 @@ Create a file named openaiapikey.txt in the project directory and paste your Ope
 
 To run the PDF Summary Generator application, execute the following command in the project directory:
 
-`python main.py`
+```
+python main.py
+```
 
 This will start the Flask development server, and the application will be accessible at http://localhost:8000/pdfsummary.
 
@@ -58,11 +66,14 @@ You can use tools like Postman or curl to send requests to the API endpoint.
 
 Example Request
 
-`curl -X POST -F "pdfs=@example.pdf" http://localhost:8000/pdfsummary`
+```
+curl -X POST -F "pdfs=@example.pdf" http://localhost:8000/pdfsummary
+```
 
 Example Response
 
-`{
+```
+{
 
   "summary": "This is the summary of the PDF document...",
 
@@ -74,7 +85,8 @@ Example Response
 
   "blog_post": "This is the generated blog post based on the content..."
 
-}`
+}
+```
 
 ## Contributing
 
