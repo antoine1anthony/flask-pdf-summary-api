@@ -2,9 +2,9 @@
 
 ## Overview
 
-The PDF Summary Generator is a Python-based application that leverages the capabilities of OpenAI's GPT-3 language model to automatically generate summaries, notes, and other content from PDF documents. The application provides a RESTful API endpoint that accepts PDF files as input and returns a JSON object containing the generated summaries, notes, and additional content.
+The PDF Summary Generator is a Python-based application that leverages the capabilities of OpenAI's GPT-3.5-turbo language model to automatically generate summaries, notes, and other content from PDF documents. The application provides a RESTful API endpoint that accepts PDF files as input and returns a JSON object containing the generated summaries, notes, and additional content.
 
-The application uses the pdfplumber library to extract text from PDF files, and the openai library to interact with the GPT-3 API. The application is built using the Flask web framework, making it easy to deploy and use.
+The application uses the pdfplumber library to extract text from PDF files, and the openai library to interact with the GPT-3.5-turbo API. The application is built using the Flask web framework, making it easy to deploy and use.
 
 ## Features
 
@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
 Create a file named openaiapikey.txt in the project directory and paste your OpenAI API key into it.
 
-(Optional) Customize the GPT-3 prompts and chatbot responses by modifying the text files in the project directory.
+(Optional) Customize the GPT-3.5-turbo prompts and chatbot responses by modifying the text files in the project directory.
 
 ## Usage
 
