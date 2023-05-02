@@ -139,9 +139,7 @@ def pdfsummary():
 
         # Use the summary of notes for further processing
         essential1 = open_file('pdfprompt4.txt').replace('<<NOTES>>', summary_string)
-        print(f'essential Info Prompt: \n {essential1}')
         essential2 = gpt_3(essential1)
-        print(f'essential Info: \n  {essential2}')
 
         result = {
             'summary': summary_content,
