@@ -138,14 +138,16 @@ def pdfsummary():
         summary_string = "\n\n".join(result2)
 
         # Use the summary of notes for further processing
-        essencial1 = open_file('pdfprompt4.txt').replace('<<NOTES>>', summary_string)
-        essencial2 = gpt_3(essencial1)
+        essential1 = open_file('pdfprompt4.txt').replace('<<NOTES>>', summary_string)
+        print(f'essential Info Prompt: \n {essential1}')
+        essential2 = gpt_3(essential1)
+        print(f'essential Info: \n  {essential2}')
 
         result = {
             'summary': summary_content,
             'notes': notes_string,
             'notes_summary': summary_string,
-            'essencial_info': essencial2
+            'essential_info': essential2
         }
 
          # Delete the uploaded PDF files and the converted .txt files
