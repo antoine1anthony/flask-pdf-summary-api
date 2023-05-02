@@ -10,7 +10,7 @@ The application uses the pdfplumber library to extract text from PDF files, and 
 
 Extract text from PDF files and convert them to plain text format.
 
-Generate summaries of the extracted text using GPT-3.
+Generate summaries of the extracted text using GPT-3.5-turbo.
 
 Generate notes and summaries of notes from the text.
 
