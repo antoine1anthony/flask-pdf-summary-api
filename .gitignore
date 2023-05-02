@@ -1,4 +1,5 @@
 openaiapikey.txt
 /PDFs/*.pdf
 /textPDFs/*.txt
+.env
 ```
