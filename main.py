@@ -44,8 +44,8 @@ def gpt_3(prompt):
     chatbot = open_file('pdfbot.txt')
 
     messages = [
+            {"role": "system", "content": chatbot},
             {"role": "user", "content": prompt},
-            {"role": "system", "content": chatbot}
     ]
 
     response = openai.ChatCompletion.create(
@@ -129,22 +129,22 @@ def pdfsummary():
             notes = gpt_3(prompt)
             result.append(notes)
 
-            keytw = open_file('pdfprompt6.txt').replace('<<NOTES>>', chunk)
+            keytw = open_file('pdfprompt3.txt').replace('<<NOTES>>', chunk)
             keytw2 = gpt_3(keytw)
             result2.append(keytw2)
 
         # Convert the lists to strings
         notes_string = "\n\n".join(result)
-        summary_string = "\n\n".join(result2)
+        study_guide_string = "\n\n".join(result2)
 
         # Use the summary of notes for further processing
-        essential1 = open_file('pdfprompt4.txt').replace('<<NOTES>>', summary_string)
+        essential1 = open_file('pdfprompt4.txt').replace('<<NOTES>>', study_guide_string)
         essential2 = gpt_3(essential1)
 
         result = {
             'summary': summary_content,
             'notes': notes_string,
-            'notes_summary': summary_string,
+            'notes_summary': study_guide_string,
             'essential_info': essential2
         }
 
