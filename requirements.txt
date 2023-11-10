@@ -2,3 +2,4 @@ flask
 pdfplumber
 openai
 glob2
+python-dotenv
