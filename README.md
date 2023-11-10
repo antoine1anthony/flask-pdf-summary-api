@@ -46,7 +46,7 @@ Install the required Python libraries:
 pip install -r requirements.txt
 ```
 
-Create a file named openaiapikey.txt in the project directory and paste your OpenAI API key into it.
+Copy .env.example in the project directory, name it .env and paste your OpenAI API key into it.
 
 (Optional) Customize the GPT-3.5-turbo prompts and chatbot responses by modifying the text files in the project directory.
 
